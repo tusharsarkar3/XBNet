@@ -1,4 +1,5 @@
 import torch
+import numpy
 from collections import OrderedDict
 
 class Seq(torch.nn.Sequential):

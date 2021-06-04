@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from xgboost import XGBClassifier
 from collections import OrderedDict
-from XBNet.Sequential import Seq
+from XBNet.sequential import Seq
 
 class Model(torch.nn.Module):
     def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, k=2, epsilon=0.001):
