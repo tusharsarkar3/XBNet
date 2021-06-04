@@ -1,12 +1,13 @@
 import torch
 import numpy as np
-import torch.nn.functional as F
 from xgboost import XGBClassifier
+from collections import OrderedDict
+from XBNet.Sequential import Seq
 
 class Model(torch.nn.Module):
-    def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, epsilon=0.001):
+    def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, k=2, epsilon=0.001):
         super(Model, self).__init__()
-        self.layers = {}
+        self.layers = OrderedDict()
         self.boosted_layers = {}
         self.num_layers = num_layers
         self.num_layers_boosted = num_layers_boosted
@@ -17,20 +18,17 @@ class Model(torch.nn.Module):
         self.base_tree()
 
         self.epsilon = epsilon
+        self.k = k
+
         self.layers[str(0)].weight = torch.nn.Parameter(torch.from_numpy(self.temp.T))
+
+
         self.xg = XGBClassifier()
 
+        self.sequential = Seq(self.layers)
+        self.sequential.give(self.xg, self.num_layers_boosted)
+        self.sigmoid = torch.nn.Sigmoid()
 
-    def parameters(self, recurse=True):
-        for name, param in self.named_parameters(recurse=recurse):
-            yield param.weight
-
-    def named_parameters(self, prefix: str = '', recurse: bool = True):
-        gen = self._named_members(
-            lambda module: self.layers.items(),
-            prefix=prefix, recurse=recurse)
-        for elem in gen:
-            yield elem
 
     def get(self, l):
         self.l = l
@@ -46,7 +44,13 @@ class Model(torch.nn.Module):
             if i == 0:
                 self.input_out_dim = out
         print("Enter your last layer ")
-        self.ch = int(input("1. Sigmod \n2. Softmax \n3.None \n"))
+        self.ch = int(input("1. Sigmod \n2. Softmax \n3. None \n"))
+        if self.ch == 1:
+            self.layers[str(self.num_layers)] = torch.nn.Sigmoid()
+        elif self.ch == 2:
+            self.layers[str(self.num_layers)] = torch.nn.Softmax()
+        else:
+            pass
 
     def base_tree(self):
         self.temp1 = XGBClassifier().fit(self.X, self.y).feature_importances_
@@ -55,18 +59,5 @@ class Model(torch.nn.Module):
             self.temp = np.column_stack((self.temp, self.temp1))
 
     def forward(self, x, train=True):
-        for i, layer in enumerate(self.layers.values()):
-            x = F.relu(layer(x))
-            x0 = x
-            if train == True:
-                if i < self.num_layers_boosted:
-                    self.boosted_layers[i] = torch.from_numpy(np.array(self.xg.fit(x0.detach().numpy(), (
-                        self.l).detach().numpy()).feature_importances_) + self.epsilon)
-        if self.ch == 1:
-            x = torch.sigmoid(x)
-        elif self.ch == 2:
-            x = F.softmax(x)
-        else:
-            pass
+        x = self.sequential(x, self.l,train)
         return x
-

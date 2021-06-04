@@ -1,5 +1,6 @@
 README.md
 setup.py
+XBNet/Sequential.py
 XBNet/Training.py
 XBNet/Xbnet.py
 XBNet/__init__.py

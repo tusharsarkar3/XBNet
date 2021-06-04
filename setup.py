@@ -18,7 +18,6 @@ setuptools.setup(
 	long_description=long_description,
 	long_description_content_type="text/markdown",
 
-	# Any link to reach this module, ***if*** you have any webpage or github profile
 	url="https://github.com/tusharsarkar3/",
 	packages=setuptools.find_packages(),
 
@@ -29,9 +28,9 @@ setuptools.setup(
 
 
 		 install_requires=[
-		 "PyTorch",
-	    "NumPy",
-        "Xgboost"
+		 "torch",
+	    "numpy",
+        "xgboost"
 	],
 
 
