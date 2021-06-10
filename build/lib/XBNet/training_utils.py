@@ -141,5 +141,5 @@ def predict(model,X):
         else:
             y_pred = 1
     else:
-        y_pred = np.argmax(y_pred.detach().numpy())
+        _, predicted = torch.max(y_pred.data, 1)
     return y_pred
