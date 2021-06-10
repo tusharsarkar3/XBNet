@@ -6,7 +6,7 @@
 
 XBNET that is built on PyTorch combines tree-based models with neural networks to create a robust architecture that is trained by using
 a novel optimization technique, Boosted Gradient Descent for Tabular
-Data which increases its interpretability and performance.Boosted Gradient Descent is initialized with the
+Data which increases its interpretability and performance. Boosted Gradient Descent is initialized with the
 feature importance of a gradient boosted tree, and it updates the weights of each
 layer in the neural network in two steps:
 - Update weights by gradient descent.
@@ -22,11 +22,11 @@ in every intermediate layer.
 ---
 ### Installation :
 ```
-pip install --upgrade git+https://github.com/Hungry-Hippoos/Ajnabee-server.git
+pip install --upgrade git+https://github.com/tusharsarkar3/XBNet.git
 ```
 ---
 
-###Example for using
+### Example for using
 ```
 import torch
 import numpy as np
