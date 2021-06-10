@@ -1,7 +1,7 @@
 # XBNet - Xtremely Boosted Network
 ## Boosted neural network for tabular data
 
- [![](https://img.shields.io/badge/Made_with-PyTorch-res?style=for-the-badge&logo=pytorch)](https://pytorch.org/ "PyTorch")
+[![](https://img.shields.io/badge/Made_with-PyTorch-res?style=for-the-badge&logo=pytorch)](https://pytorch.org/ "PyTorch")
 
 
 XBNET that is built on PyTorch combines tree-based models with neural networks to create a robust architecture that is trained by using
