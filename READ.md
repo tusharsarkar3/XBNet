@@ -56,14 +56,6 @@ m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criter
 print(predict(m,x_data.to_numpy()[0,:]))
 
 ```
----
-### To run this project :
-
-Clone the project -
-```
-  $ git clone https://github.com/tusharsarkar3/XBNet.git
-
-```
 
 ---
 ### Reference

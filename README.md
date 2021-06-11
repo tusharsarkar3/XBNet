@@ -56,7 +56,11 @@ m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criter
 print(predict(m,x_data.to_numpy()[0,:]))
 
 ```
+---
+### Output images :
 
+![img](screenshots/Results_metrics.png)  
+![img](screenshots/results_graph.png)
 ---
 ### Reference
 If you make use of this software for your work, we would appreciate it if you would cite us:

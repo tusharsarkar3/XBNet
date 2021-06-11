@@ -7,7 +7,7 @@ from XBNet.training_utils import training,predict
 from XBNet.models import XBNETClassifier
 from XBNet.run import run_XBNET
 
-data = pd.read_csv('test\Iris.csv')
+data = pd.read_csv('test\Iris (1).csv')
 print(data.shape)
 x_data = data[data.columns[:-1]]
 print(x_data.shape)
@@ -22,6 +22,6 @@ model = XBNETClassifier(X_train,y_train,2)
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
-m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,32,100)
+m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,32,300)
 print(predict(m,x_data.to_numpy()[0,:]))
 
