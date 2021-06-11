@@ -52,11 +52,14 @@ model = XBNETClassifier(X_train,y_train,2)
 criterion = torch.nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
-m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,32,1)
+m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,32,300)
 print(predict(m,x_data.to_numpy()[0,:]))
 
 ```
-
+---
+### Output images
+![](https://github.com/tusharsarkar3/XBNet/raw/master/screenshots/Results_metrics.png)
+![](https://github.com/tusharsarkar3/XBNet/raw/master/screenshots/results_graph.png)
 ---
 ### Reference
 If you make use of this software for your work, we would appreciate it if you would cite us:
