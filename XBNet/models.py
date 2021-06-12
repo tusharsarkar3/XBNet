@@ -7,6 +7,7 @@ from XBNet.Seq import Seq
 class XBNETClassifier(torch.nn.Module):
     def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, k=2, epsilon=0.001):
         super(XBNETClassifier, self).__init__()
+        self.name = "Classification"
         self.layers = OrderedDict()
         self.boosted_layers = {}
         self.num_layers = num_layers
@@ -71,6 +72,7 @@ class XBNETClassifier(torch.nn.Module):
 class XBNETRegressor(torch.nn.Module):
     def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, k=2, epsilon=0.001):
         super(XBNETRegressor, self).__init__()
+        self.name = "Regression"
         self.layers = OrderedDict()
         self.boosted_layers = {}
         self.num_layers = num_layers
@@ -108,6 +110,7 @@ class XBNETRegressor(torch.nn.Module):
             if i == 0:
                 self.input_out_dim = out
             self.labels = out
+
         print("Enter your last layer ")
         self.ch = int(input("1. Sigmoid \n2. Softmax \n3. None \n"))
         if self.ch == 1:

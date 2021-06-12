@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report,r2_score,mean_absolute_error,mean_squared_error,mean_squared_log_error
 import matplotlib.pyplot as plt
 import torch
 
@@ -42,28 +42,45 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 10):
             outputs = model(inp.float(),train = False)
             predicted = outputs
             total += out.float().size(0)
-            if model.labels == 1:
-                for i in range(len(predicted)):
-                    if predicted[i] < torch.Tensor([0.5]):
-                        predicted[i] = 0
-                    else:
-                        predicted[i] =1
-
-                    if predicted[i].type(torch.LongTensor) == out[i]:
-                        correct += 1
+            if model.name == "Regression":
+                pass
             else:
-                _, predicted = torch.max(outputs.data, 1)
-                correct += (predicted == out.long()).sum().item()
+                if model.labels == 1:
+                    for i in range(len(predicted)):
+                        if predicted[i] < torch.Tensor([0.5]):
+                            predicted[i] = 0
+                        else:
+                            predicted[i] =1
+
+                        if predicted[i].type(torch.LongTensor) == out[i]:
+                            correct += 1
+                else:
+                    _, predicted = torch.max(outputs.data, 1)
+                    correct += (predicted == out.long()).sum().item()
 
             predictions.extend(predicted.detach().numpy())
             act.extend(out.detach().numpy())
         lossing.append(running_loss/len(trainDataload))
-        accuracy.append(100 * correct / total)
-        print("Training Loss after epoch {} is {} and Accuracy is {}".format(epochs+1,running_loss/len(trainDataload),100 * correct / total))
+        if model.name == "Classification":
+            accuracy.append(100 * correct / total)
+            print("Training Loss after epoch {} is {} and Accuracy is {}".format(epochs + 1,
+                                                                                 running_loss / len(trainDataload),
+                                                                                 100 * correct / total))
+        else:
+            # print(out.detach().numpy(),predicted.detach().numpy())
+            # print(r2_score(out.detach().numpy(),predicted.detach().numpy()))
+            accuracy.append(100*r2_score(out.detach().numpy(),predicted.detach().numpy()))
+            print("Training Loss after epoch {} is {} and Accuracy is {}".format(epochs+1,running_loss/len(trainDataload),accuracy[-1]))
         v_l,v_a = validate(model,testDataload,criterion,epochs)
         val_acc.extend(v_a)
         val_loss.extend(v_l)
-    print(classification_report(np.array(act),np.array(predictions)))
+    if model.name == "Classification":
+        print(classification_report(np.array(act),np.array(predictions)))
+    else:
+        print("R_2 Score: ", r2_score(np.array(act),np.array(predictions)))
+        print("Mean Absolute error Score: ", mean_absolute_error(np.array(act),np.array(predictions)))
+        print("Mean Squared error Score: ", mean_squared_error(np.array(act),np.array(predictions)))
+        print("Root Mean Squared error Score: ", np.sqrt(mean_squared_error(np.array(act),np.array(predictions))))
     validate(model,testDataload,criterion,epochs,True)
 
     figure, axis = plt.subplots(2)
@@ -109,37 +126,55 @@ def validate(model,testDataload,criterion,epochs,last=False):
         valid_loss += loss
         total += out.float().size(0)
         predicted = y_pred
-        if model.labels == 1:
-            for i in range(len(y_pred)):
-                if y_pred[i] < torch.Tensor([0.5]):
-                    y_pred[i] = 0
-                else:
-                    y_pred[i] = 1
-                if y_pred[i].type(torch.LongTensor) == out[i]:
-                    correct += 1
+        if model.name == "Regression":
+            pass
         else:
-            _, predicted = torch.max(y_pred.data, 1)
-            correct += (predicted == out.long()).sum().item()
+            if model.labels == 1:
+                for i in range(len(y_pred)):
+                    if y_pred[i] < torch.Tensor([0.5]):
+                        y_pred[i] = 0
+                    else:
+                        y_pred[i] = 1
+                    if y_pred[i].type(torch.LongTensor) == out[i]:
+                        correct += 1
+            else:
+                _, predicted = torch.max(y_pred.data, 1)
+                correct += (predicted == out.long()).sum().item()
 
         predictions.extend(predicted.detach().numpy())
         act.extend(out.detach().numpy())
     lossing.append(valid_loss / len(testDataload))
-    accuracy.append(100 * correct / total)
+    if model.name == "Classification":
+        accuracy.append(100 * correct / total)
+    else:
+        accuracy.append(100 * r2_score(np.array(act), np.array(predictions)))
     if last:
-        print(classification_report(np.array(act), np.array(predictions)))
-
-    print("Validation Loss after epoch {} is {} and Accuracy is {}".format(epochs, valid_loss / len(testDataload),
-                                                                           100 * correct / total))
+        if model.name == "Classification":
+            print(classification_report(np.array(act), np.array(predictions)))
+        else:
+            print("R_2 Score: ", r2_score(np.array(act), np.array(predictions)))
+            print("Mean Absolute error Score: ", mean_absolute_error(np.array(act), np.array(predictions)))
+            print("Mean Squared error Score: ", mean_squared_error(np.array(act), np.array(predictions)))
+            print("Root Mean Squared error Score: ", np.sqrt(mean_squared_error(np.array(act), np.array(predictions))))
+    if model.name == "Classification":
+        print("Validation Loss after epoch {} is {} and Accuracy is {}".format(epochs+1, valid_loss / len(testDataload),
+                                                                               100 * correct / total))
+    else:
+        print("Validation Loss after epoch {} is {} and Accuracy is {}".format(epochs+1, valid_loss / len(testDataload),
+                                                                               100*r2_score(np.array(act), np.array(predictions))))
     return lossing, accuracy
 
 def predict(model,X):
     X = torch.from_numpy(X)
     y_pred = model(X.float(), train=False)
-    if model.labels == 1:
-        if y_pred < torch.Tensor([0.5]):
-            y_pred = 0
+    if model.name == "Classification":
+        if model.labels == 1:
+            if y_pred < torch.Tensor([0.5]):
+                y_pred = 0
+            else:
+                y_pred = 1
         else:
-            y_pred = 1
+            y_pred = np.argmax(y_pred.detach().numpy())
+        return y_pred
     else:
-        y_pred = np.argmax(y_pred.detach().numpy())
-    return y_pred
+        return y_pred.detach().numpy()[0]
