@@ -5,7 +5,15 @@ from collections import OrderedDict
 from XBNet.Seq import Seq
 
 class XBNETClassifier(torch.nn.Module):
-    def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, k=2, epsilon=0.001):
+    '''
+    XBNetClassifier is a model for classification tasks that tries to combine tree-based models with
+    neural networks to create a robust architecture.
+         :param X_values(numpy array): Features on which model has to be trained
+         :param y_values(numpy array): Labels of the features i.e target variable
+         :param num_layers(int): Number of layers in the neural network
+         :param num_layers_boosted(int,optional): Number of layers to be boosted in the neural network. Default value: 1
+    '''
+    def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1):
         super(XBNETClassifier, self).__init__()
         self.name = "Classification"
         self.layers = OrderedDict()
@@ -18,9 +26,6 @@ class XBNETClassifier(torch.nn.Module):
         self.take_layers_dim()
         self.base_tree()
 
-        self.epsilon = epsilon
-        self.k = k
-
         self.layers[str(0)].weight = torch.nn.Parameter(torch.from_numpy(self.temp.T))
 
 
@@ -28,14 +33,20 @@ class XBNETClassifier(torch.nn.Module):
 
         self.sequential = Seq(self.layers)
         self.sequential.give(self.xg, self.num_layers_boosted)
-        self.sigmoid = torch.nn.Sigmoid()
 
 
     def get(self, l):
+        '''
+        Gets the set of current actual outputs of the inputs
+        :param l(tensor): Labels of the current set of inputs that are getting processed.
+        '''
         self.l = l
 
 
     def take_layers_dim(self):
+        '''
+        Creates the neural network by taking input from the user
+        '''
         print("Enter dimensions of linear layers: ")
         for i in range(self.num_layers):
             inp = int(input("Enter input dimensions of layer " + str(i + 1) + ": "))
@@ -56,6 +67,10 @@ class XBNETClassifier(torch.nn.Module):
             pass
 
     def base_tree(self):
+        '''
+        Instantiates and trains a XGBRegressor on the first layer of the neural network to set its feature importances
+         as the weights of the layer
+        '''
         self.temp1 = XGBClassifier().fit(self.X, self.y).feature_importances_
         self.temp = self.temp1
         for i in range(1, self.input_out_dim):
@@ -66,11 +81,23 @@ class XBNETClassifier(torch.nn.Module):
         return x
 
     def save(self,path):
+        '''
+        Saves the entire model in the provided path
+        :param path(string): Path where model should be saved
+        '''
         torch.save(self,path)
 
 
 class XBNETRegressor(torch.nn.Module):
-    def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1, k=2, epsilon=0.001):
+    '''
+    XBNETRegressor is a model for regression tasks that tries to combine tree-based models with
+    neural networks to create a robust architecture.
+         :param X_values(numpy array): Features on which model has to be trained
+         :param y_values(numpy array): Labels of the features i.e target variable
+         :param num_layers(int): Number of layers in the neural network
+         :param num_layers_boosted(int,optional): Number of layers to be boosted in the neural network. Default value: 1
+    '''
+    def __init__(self, X_values, y_values, num_layers, num_layers_boosted=1):
         super(XBNETRegressor, self).__init__()
         self.name = "Regression"
         self.layers = OrderedDict()
@@ -83,9 +110,6 @@ class XBNETRegressor(torch.nn.Module):
         self.take_layers_dim()
         self.base_tree()
 
-        self.epsilon = epsilon
-        self.k = k
-
         self.layers[str(0)].weight = torch.nn.Parameter(torch.from_numpy(self.temp.T))
 
 
@@ -97,10 +121,17 @@ class XBNETRegressor(torch.nn.Module):
 
 
     def get(self, l):
+        '''
+        Gets the set of current actual outputs of the inputs
+        :param l(tensor): Labels of the current set of inputs that are getting processed.
+        '''
         self.l = l
 
 
     def take_layers_dim(self):
+        '''
+        Creates the neural network by taking input from the user
+        '''
         print("Enter dimensions of linear layers: ")
         for i in range(self.num_layers):
             inp = int(input("Enter input dimensions of layer " + str(i + 1) + ": "))
@@ -122,6 +153,10 @@ class XBNETRegressor(torch.nn.Module):
             pass
 
     def base_tree(self):
+        '''
+        Instantiates and trains a XGBRegressor on the first layer of the neural network to set its feature importances
+         as the weights of the layer
+        '''
         self.temp1 = XGBRegressor().fit(self.X, self.y).feature_importances_
         self.temp = self.temp1
         for i in range(1, self.input_out_dim):
@@ -132,4 +167,8 @@ class XBNETRegressor(torch.nn.Module):
         return x
 
     def save(self,path):
+        '''
+        Saves the entire model in the provided path
+        :param path(string): Path where model should be saved
+        '''
         torch.save(self,path)

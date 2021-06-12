@@ -21,7 +21,6 @@ model = XBNETClassifier(X_train,y_train,2)
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
-
 m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,32,300)
 print(predict(m,x_data.to_numpy()[0,:]))
 
