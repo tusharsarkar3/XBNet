@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: XBNet
-Version: 1.2.4
+Version: 1.2.5
 Summary: XBNet is an open source project which is built with PyTorch that works as a Boosted neural network for tabular data
 Home-page: https://github.com/tusharsarkar3/
 Author: Tushar Sarkar

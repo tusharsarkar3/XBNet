@@ -28,6 +28,11 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100):
         total = 0
         loss = None
         for inp, out in trainDataload:
+            try:
+                if out.shape[0] >= 1:
+                    out = torch.squeeze(out, 1)
+            except:
+                pass
             model.get(out.float())
             y_pred = model(inp.float())
             if model.labels == 1:

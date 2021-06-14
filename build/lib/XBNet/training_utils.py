@@ -4,7 +4,18 @@ import matplotlib.pyplot as plt
 import torch
 
 
-def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 10):
+def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100):
+    '''
+    Training function for training the model with the given data
+    :param model(XBNET Classifier/Regressor): model to be trained
+    :param trainDataload(object of DataLoader): DataLoader with training data
+    :param testDataload(object of DataLoader): DataLoader with testing data
+    :param criterion(object of loss function): Loss function to be used for training
+    :param optimizer(object of Optimizer): Optimizer used for training
+    :param epochs(int,optional): Number of epochs for training the model. Default value: 100
+    :return:
+    list of training accuracy, training loss, testing accuracy, testing loss for all the epochs
+    '''
     accuracy = []
     lossing = []
     val_acc = []
@@ -17,6 +28,11 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 10):
         total = 0
         loss = None
         for inp, out in trainDataload:
+            try:
+                if out.shape[0] >= 1:
+                    out = torch.squeeze(out, 1)
+            except:
+                pass
             model.get(out.float())
             y_pred = model(inp.float())
             if model.labels == 1:
@@ -67,8 +83,6 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 10):
                                                                                  running_loss / len(trainDataload),
                                                                                  100 * correct / total))
         else:
-            # print(out.detach().numpy(),predicted.detach().numpy())
-            # print(r2_score(out.detach().numpy(),predicted.detach().numpy()))
             accuracy.append(100*r2_score(out.detach().numpy(),predicted.detach().numpy()))
             print("Training Loss after epoch {} is {} and Accuracy is {}".format(epochs+1,running_loss/len(trainDataload),accuracy[-1]))
         v_l,v_a = validate(model,testDataload,criterion,epochs)
@@ -109,6 +123,16 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 10):
 
 @torch.no_grad()
 def validate(model,testDataload,criterion,epochs,last=False):
+    '''
+    Function for validating the training on testing/validation data.
+    :param model(XBNET Classifier/Regressor): model to be trained
+    :param testDataload(object of DataLoader): DataLoader with testing data
+    :param criterion(object of loss function): Loss function to be used for training
+    :param epochs(int,optional): Number of epochs for training the model. Default value: 100
+    :param last(Boolean, optional): Checks if the current epoch is the last epoch. Default: False
+    :return:
+    list of validation loss,accuracy
+    '''
     valid_loss = 0
     accuracy = []
     lossing = []
@@ -165,6 +189,13 @@ def validate(model,testDataload,criterion,epochs,last=False):
     return lossing, accuracy
 
 def predict(model,X):
+    '''
+    Predicts the output given the correct input data
+    :param model(XBNET Classifier/Regressor): model to be trained
+    :param X: Feature for which prediction is required
+    :return:
+    predicted value(int)
+    '''
     X = torch.from_numpy(X)
     y_pred = model(X.float(), train=False)
     if model.name == "Classification":
