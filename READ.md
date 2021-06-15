@@ -3,7 +3,11 @@
 
 [![](https://img.shields.io/badge/Made_with-PyTorch-res?style=for-the-badge&logo=pytorch)](https://pytorch.org/ "PyTorch")
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-breastcancer)](https://paperswithcode.com/sota/classification-on-breastcancer?p=xbnet-an-extremely-boosted-neural-network)
-
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-iris-1)](https://paperswithcode.com/sota/classification-on-iris-1?p=xbnet-an-extremely-boosted-neural-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/diabetes-prediction-on-diabetes)](https://paperswithcode.com/sota/diabetes-prediction-on-diabetes?p=xbnet-an-extremely-boosted-neural-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-titanic)](https://paperswithcode.com/sota/classification-on-titanic?p=xbnet-an-extremely-boosted-neural-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/breast-cancer-detection-on-breast-cancer-1)](https://paperswithcode.com/sota/breast-cancer-detection-on-breast-cancer-1?p=xbnet-an-extremely-boosted-neural-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/fraud-detection-on-kaggle-credit-card-fraud)](https://paperswithcode.com/sota/fraud-detection-on-kaggle-credit-card-fraud?p=xbnet-an-extremely-boosted-neural-network)
 
 XBNET that is built on PyTorch combines tree-based models with neural networks to create a robust architecture that is trained by using
 a novel optimization technique, Boosted Gradient Descent for Tabular
