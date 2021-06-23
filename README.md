@@ -2,7 +2,6 @@
 ## Boosted neural network for tabular data
 
 [![](https://img.shields.io/badge/Made_with-PyTorch-res?style=for-the-badge&logo=pytorch)](https://pytorch.org/ "PyTorch")
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-breastcancer)](https://paperswithcode.com/sota/classification-on-breastcancer?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/iris-classification-on-iris)](https://paperswithcode.com/sota/iris-classification-on-iris?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/diabetes-prediction-on-diabetes)](https://paperswithcode.com/sota/diabetes-prediction-on-diabetes?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/survival-prediction-on-titanic)](https://paperswithcode.com/sota/survival-prediction-on-titanic?p=xbnet-an-extremely-boosted-neural-network)
