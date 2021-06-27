@@ -6,7 +6,7 @@ with open("READ.md", "r") as fh:
 setuptools.setup(
 	name="XBNet",
 
-	version="1.2.5",
+	version="1.3",
 
 	author="Tushar Sarkar",
 

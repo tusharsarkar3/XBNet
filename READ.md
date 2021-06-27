@@ -2,10 +2,9 @@
 ## Boosted neural network for tabular data
 
 [![](https://img.shields.io/badge/Made_with-PyTorch-res?style=for-the-badge&logo=pytorch)](https://pytorch.org/ "PyTorch")
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-breastcancer)](https://paperswithcode.com/sota/classification-on-breastcancer?p=xbnet-an-extremely-boosted-neural-network)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-iris-1)](https://paperswithcode.com/sota/classification-on-iris-1?p=xbnet-an-extremely-boosted-neural-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/iris-classification-on-iris)](https://paperswithcode.com/sota/iris-classification-on-iris?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/diabetes-prediction-on-diabetes)](https://paperswithcode.com/sota/diabetes-prediction-on-diabetes?p=xbnet-an-extremely-boosted-neural-network)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/classification-on-titanic)](https://paperswithcode.com/sota/classification-on-titanic?p=xbnet-an-extremely-boosted-neural-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/survival-prediction-on-titanic)](https://paperswithcode.com/sota/survival-prediction-on-titanic?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/breast-cancer-detection-on-breast-cancer-1)](https://paperswithcode.com/sota/breast-cancer-detection-on-breast-cancer-1?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/fraud-detection-on-kaggle-credit-card-fraud)](https://paperswithcode.com/sota/fraud-detection-on-kaggle-credit-card-fraud?p=xbnet-an-extremely-boosted-neural-network)
 
@@ -23,6 +22,17 @@ in every intermediate layer.
 - Better performance, training stability and interpretability for tabular data.
 - Easy to implement with rapid prototyping capabilities
 - Minimum Code requirements for creating any neural network with or without boosting
+---
+### Comparison with XGBOOST
+XBNET VS XGBOOST testing accuracy on different datasets with no hyperparameter tuning
+
+| Dataset | XBNET  | XGBOOST |
+| ---------------- | ---------------- | ---------------- |
+| Iris  | <b>100</b>  | 97.7 |
+| Breast Cancer  | <b>96.49</b>  | 96.47 |
+| Diabetes  | <b>78.78</b>  | 77.48 |
+| Titanic  | 79.85  | <b>80.5</b> |
+| German Credit  | 71.33  | <b>77.66</b> |
 
 ---
 ### Installation :
@@ -61,10 +71,12 @@ m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criter
 print(predict(m,x_data.to_numpy()[0,:]))
 ```
 ---
-### Output images
-![](https://github.com/tusharsarkar3/XBNet/raw/master/screenshots/Results_metrics.png)
-![](https://github.com/tusharsarkar3/XBNet/raw/master/screenshots/results_graph.png)
+### Output images :
+
+![img](screenshots/Results_metrics.png)  
+![img](screenshots/results_graph.png)
 ---
+
 ### Reference
 If you make use of this software for your work, we would appreciate it if you would cite us:
 ```
@@ -82,4 +94,3 @@ If you make use of this software for your work, we would appreciate it if you wo
 - Metrics for different requirements
 - Addition of some other types of layers
 
----

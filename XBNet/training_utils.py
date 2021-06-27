@@ -97,6 +97,8 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100):
         print("Root Mean Squared error Score: ", np.sqrt(mean_squared_error(np.array(act),np.array(predictions))))
     validate(model,testDataload,criterion,epochs,True)
 
+    model.feature_importances_ = torch.nn.Softmax(dim=0)(model.layers["0"].weight[1]).detach().numpy()
+
     figure, axis = plt.subplots(2)
     figure.suptitle('Performance of XBNET')
 
