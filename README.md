@@ -65,6 +65,18 @@ print(predict(m,x_data.to_numpy()[0,:]))
 ![img](screenshots/Results_metrics.png)  
 ![img](screenshots/results_graph.png)
 ---
+### Comparison with XGBOOST
+XBNET VS XGBOOST testing accuracy on different datasets with no hyperparameter tuning
+
+| Dataset | XBNET  | XGBOOST |
+| ---------------- | ---------------- | ---------------- |
+| Iris  | <b>100</b>  | 97.7 |
+| Breast Cancer  | <b>96.49</b>  | 96.47 |
+| Diabetes  | <b>78.78</b>  | 77.48 |
+| Titanic  | 79.85  | <b>80.5</b> |
+| German Credit  | 71.33  | <b>77.66</b> |
+
+---
 ### Reference
 If you make use of this software for your work, we would appreciate it if you would cite us:
 ```
