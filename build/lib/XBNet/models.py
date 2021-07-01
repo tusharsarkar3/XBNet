@@ -33,7 +33,7 @@ class XBNETClassifier(torch.nn.Module):
 
         self.sequential = Seq(self.layers)
         self.sequential.give(self.xg, self.num_layers_boosted)
-
+        self.feature_importances_ = None
 
     def get(self, l):
         '''
@@ -118,7 +118,7 @@ class XBNETRegressor(torch.nn.Module):
         self.sequential = Seq(self.layers)
         self.sequential.give(self.xg, self.num_layers_boosted)
         self.sigmoid = torch.nn.Sigmoid()
-
+        self.feature_importances_ = None
 
     def get(self, l):
         '''

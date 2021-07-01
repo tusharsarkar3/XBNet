@@ -30,6 +30,7 @@ XBNET VS XGBOOST testing accuracy on different datasets with no hyperparameter t
 | ---------------- | ---------------- | ---------------- |
 | Iris  | <b>100</b>  | 97.7 |
 | Breast Cancer  | <b>96.49</b>  | 96.47 |
+| Wine  | <b>97.22</b>  | <b>97.22</b> |
 | Diabetes  | <b>78.78</b>  | 77.48 |
 | Titanic  | 79.85  | <b>80.5</b> |
 | German Credit  | 71.33  | <b>77.66</b> |

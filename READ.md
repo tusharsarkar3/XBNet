@@ -22,6 +22,7 @@ in every intermediate layer.
 - Better performance, training stability and interpretability for tabular data.
 - Easy to implement with rapid prototyping capabilities
 - Minimum Code requirements for creating any neural network with or without boosting
+
 ---
 ### Comparison with XGBOOST
 XBNET VS XGBOOST testing accuracy on different datasets with no hyperparameter tuning
@@ -71,12 +72,10 @@ m,acc, lo, val_ac, val_lo = run_XBNET(X_train,X_test,y_train,y_test,model,criter
 print(predict(m,x_data.to_numpy()[0,:]))
 ```
 ---
-### Output images :
-
-![img](screenshots/Results_metrics.png)  
-![img](screenshots/results_graph.png)
+### Output images
+![](https://github.com/tusharsarkar3/XBNet/raw/master/screenshots/Results_metrics.png)
+![](https://github.com/tusharsarkar3/XBNet/raw/master/screenshots/results_graph.png)
 ---
-
 ### Reference
 If you make use of this software for your work, we would appreciate it if you would cite us:
 ```
@@ -94,3 +93,4 @@ If you make use of this software for your work, we would appreciate it if you wo
 - Metrics for different requirements
 - Addition of some other types of layers
 
+---
