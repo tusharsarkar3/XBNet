@@ -8,6 +8,10 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/breast-cancer-detection-on-breast-cancer-1)](https://paperswithcode.com/sota/breast-cancer-detection-on-breast-cancer-1?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/fraud-detection-on-kaggle-credit-card-fraud)](https://paperswithcode.com/sota/fraud-detection-on-kaggle-credit-card-fraud?p=xbnet-an-extremely-boosted-neural-network)
 
+[![Downloads](https://pepy.tech/badge/xbnet)](https://pepy.tech/project/xbnet) 
+[![Downloads](https://pepy.tech/badge/xbnet/month)](https://pepy.tech/project/xbnet)
+[![Downloads](https://pepy.tech/badge/xbnet/week)](https://pepy.tech/project/xbnet)
+
 XBNET that is built on PyTorch combines tree-based models with neural networks to create a robust architecture that is trained by using
 a novel optimization technique, Boosted Gradient Descent for Tabular
 Data which increases its interpretability and performance. Boosted Gradient Descent is initialized with the
