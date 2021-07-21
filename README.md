@@ -7,6 +7,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/survival-prediction-on-titanic)](https://paperswithcode.com/sota/survival-prediction-on-titanic?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/breast-cancer-detection-on-breast-cancer-1)](https://paperswithcode.com/sota/breast-cancer-detection-on-breast-cancer-1?p=xbnet-an-extremely-boosted-neural-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/xbnet-an-extremely-boosted-neural-network/fraud-detection-on-kaggle-credit-card-fraud)](https://paperswithcode.com/sota/fraud-detection-on-kaggle-credit-card-fraud?p=xbnet-an-extremely-boosted-neural-network)
+<div class='altmetric-embed' data-badge-type='donut' data-arxiv-id='2106.05239'></div>
 
 [![Downloads](https://pepy.tech/badge/xbnet)](https://pepy.tech/project/xbnet) 
 <!-- [![Downloads](https://pepy.tech/badge/xbnet/month)](https://pepy.tech/project/xbnet)
