@@ -95,6 +95,20 @@ If you make use of this software for your work, we would appreciate it if you wo
       primaryClass={cs.LG}
 }
 ```
+
+```
+@misc{1aa4d286-fae9-431e-bd08-63c1b9c848e2,
+  title = {Library XBNet for tabular data which helps you to create a custom extremely boosted neural network},
+  author = {Tushar Sarkar},
+   journal = {Software Impacts},
+  doi = {10.24433/CO.8976286.v1}, 
+  howpublished = {\url{https://www.codeocean.com/}},
+  year = 2021,
+  month = {6},
+  version = {v1}
+}
+```
+
 ---
  #### Features to be added :
 - Metrics for different requirements
