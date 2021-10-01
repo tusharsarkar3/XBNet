@@ -28,7 +28,7 @@ class Seq(torch.nn.Sequential):
                 if i < self.num_layers_boosted:
                     try:
                         self.boosted_layers[i] = torch.from_numpy(np.array(
-                            self.xg.fit(x0.detach().numpy(), (self.l).detach().numpy()).feature_importances_) + self.epsilon)
+                            self.xg.fit(x0.detach().numpy(), (self.l).detach().numpy(),eval_metric="mlogloss").feature_importances_) + self.epsilon)
                     except:
                         pass
         return input

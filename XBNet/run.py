@@ -18,7 +18,8 @@ class Data(Dataset):
     def __getitem__(self, idx):
         return self.X[idx], self.y[idx]
 
-def run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,batch_size = 16,epochs=100):
+def run_XBNET(X_train,X_test,y_train,y_test,model,
+              criterion,optimizer,batch_size = 16,epochs=100, save = False):
     '''
     run_XBNET actually executes the entire training and validation methods for the models. Prints the metrics for the task
     and plots the graphs of accuracy vs epochs and loss vs epochs.
@@ -36,5 +37,6 @@ def run_XBNET(X_train,X_test,y_train,y_test,model,criterion,optimizer,batch_size
     '''
     trainDataload = DataLoader(Data(X_train, y_train), batch_size=batch_size)
     testDataload = DataLoader(Data(X_test, y_test), batch_size=batch_size)
-    acc, lo, val_ac, val_lo = training(model, trainDataload, testDataload, criterion, optimizer, epochs)
+    acc, lo, val_ac, val_lo = training(model, trainDataload, testDataload,
+                                       criterion, optimizer, epochs,save= save)
     return model,acc, lo, val_ac, val_lo

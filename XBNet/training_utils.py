@@ -2,9 +2,10 @@ import numpy as np
 from sklearn.metrics import classification_report,r2_score,mean_absolute_error,mean_squared_error,mean_squared_log_error
 import matplotlib.pyplot as plt
 import torch
+from tqdm import tqdm
 
 
-def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100):
+def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100,save = False):
     '''
     Training function for training the model with the given data
     :param model(XBNET Classifier/Regressor): model to be trained
@@ -20,7 +21,7 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100):
     lossing = []
     val_acc = []
     val_loss = []
-    for epochs in range(epochs):
+    for epochs in tqdm(range(epochs),desc="Percentage training completed: "):
         running_loss = 0
         predictions = []
         act = []
@@ -116,11 +117,12 @@ def training(model,trainDataload,testDataload,criterion,optimizer,epochs = 100):
     axis[1].set_ylabel('Loss value')
     axis[1].set_title("XBNet Loss")
     axis[1].legend()
-
-    plt.show()
+    if save == True:
+        plt.savefig("Training_graphs.png")
+    else:
+        plt.show()
 
     return accuracy,lossing,val_acc,val_loss
-
 
 
 @torch.no_grad()
@@ -207,7 +209,7 @@ def predict(model,X):
             else:
                 y_pred = 1
         else:
-            y_pred = np.argmax(y_pred.detach().numpy())
+            y_pred = np.argmax(y_pred.detach().numpy(),axis=1)
         return y_pred
     else:
         return y_pred.detach().numpy()[0]

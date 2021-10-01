@@ -34,6 +34,7 @@ XBNET VS XGBOOST testing accuracy on different datasets with no hyperparameter t
 | Diabetes  | <b>78.78</b>  | 77.48 |
 | Titanic  | 79.85  | <b>80.5</b> |
 | German Credit  | 71.33  | <b>77.66</b> |
+| Digit Completion  | 86.11 85.9  | <b>77.66</b> |
 
 ---
 ### Installation :

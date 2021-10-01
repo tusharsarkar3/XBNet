@@ -1,6 +1,0 @@
-sklearn
-pandas
-matplotlib
-torch
-numpy
-xgboost
