@@ -29,7 +29,7 @@ setuptools.setup(
 
 		 install_requires=[
 		"sklearn==0.0",
-		"numpy == 1.21.2",
+		"numpy == 1.22.0",
 		"pandas == 1.3.3",
 		"matplotlib==3.4.3",
 		 "torch==1.9.0",
