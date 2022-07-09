@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+  {% block content %}
+  
+        <div class="form-card container">
+          <div class="row">
+          <div class="col-md-12 no-float">
+          
+            <div class="card mr-1">
+              <div class="card-body">
+                <h3 class="card-title">Welcome!</h3><hr>
+                
+                <form  action = "http://localhost:5000/uploader" method = "POST"
+                  enctype = "multipart/form-data">
+                  <p class="card-text">
+                  <label class="col-md-8 col-form-label">Upload a csv file</label>                  
+                  <input class="form-control-file form col-md-8" style="border-radius: 2px; background-color: rgba(117, 114, 109, 0.466);" 
+                  type = "file" name = "csvfile" />
+                  <div class="form-group">
+                    <label class="col-md-12 col-form-label">Model Name</label>
+                    <div class="col-md-12">
+                      <select class="form-control" name="model">
+                        <option>XBNet</option>
+                        <option>XGBoost</option>
+                        <option>RandomForest</option>
+                        <option>Decision Tree</option>
+                        <option>LightGbm</option>
+                        <option>Neural Network</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-12 col-form-label">Number of layers</label>
+                    <div class="col-md-12">
+                      <input type="number" class="form-control" id="inputlayers" name="num_layers">
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label class="col-md-12 col-form-label">Target Feature </label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="target" name="target">
+                    </div>
+                  </div>
+                </p>                               
+                  
+                <span ><button class="btn btn mybts" type = "submit">Next</button></span>
+                    
+            
+              </form>             
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+      <footer />
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+       
+  
+{% endblock %}

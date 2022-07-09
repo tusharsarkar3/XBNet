@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Maker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
+  </head>
+  <body>
+    <div class="landingMain">
+      
+      <main>
+        <div class="container">
+        <div class="row">
+        <div class="intro col-lg-6 no-float text-center">
+          <h1 class="xbnet">Modelly</h1>
+          <p class="tagline">
+            <span><h3>Make Your Models</h3></span>
+          </p>
+          <p class="desc"><span>Your one stop destination for the state of the art machine and deep learning models.</span></p>
+
+        </div>
+        {% block content %} {% endblock %}
+        </div>
+      </div>
+        </main>
+    </div>
+    </body>
+</html>

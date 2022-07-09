@@ -1,0 +1,92 @@
+*{
+  font-family:sans-serif;
+}
+
+
+.intro{
+  background-color:rgba(13, 13, 77, 0.644);
+  height:100%;
+  color: white;
+  vertical-align:middle;
+  margin-top: 0;
+  
+}
+.desc{
+  font-weight:10;
+
+}
+.xbnet{
+  color:#ec660c;
+}
+
+
+body{
+  background-image: url(https://freedesignfile.com/upload/2017/06/Origami-black-background-vectors.jpg);
+  background-position: 100%;
+  background-size: cover;
+   
+}
+
+main {
+  height:100%;
+}
+
+.mybts{
+  background-color: #ec660c;
+  color: white;
+}
+
+.mybts:hover{
+  background-color: #ec660c8a;
+}
+
+.landingMain {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.heading {
+
+  display: flex;  
+  flex-direction: row;
+}
+
+.form-card {  
+  
+  margin-left: 5%;
+  height: 300px;
+  align-items: center;
+  justify-content: right;
+  
+}
+.card {
+  align-content: center;
+  color: #ffffff;
+  font-weight: bolder;
+  background-color: rgba(255, 255, 255, 0.192);
+}
+.card-title{
+  text-align: center;
+}
+
+html,body,.container {
+  height:100%;
+}
+.container {
+  justify-content: center;
+  display:table;
+  width: 100%;  
+  padding: 3% 0 5% 0; 
+  box-sizing: border-box;
+}
+
+.row {
+  height: 100%;
+  display: table-row;
+}
+
+.row .no-float {
+display: table-cell;
+float: none;
+}

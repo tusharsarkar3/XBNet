@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-12">
+    <div class="container" style="color: white;">
+        <div class="card">
+            <div class="card-body">
+            <div class="card-title"><h3>Results</h3></div>
+                <div class="card-text">
+                    {% if info['img']==True %}
+                    <img src="/static/images/Training_graphs.png"  alt="Graphs" style="padding-left:10%; width:85%;">
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <h4>Training accuracy is {{info['training_acc']}} %</h4><br>
+                    <h4>Testing accuracy is {{info['testing_acc']}} %</h4>
+                    <form  action = "http://localhost:5000/download" method = "POST"
+                                            enctype = "multipart/form-data">
+                        <span ><button class="btn btn mybts" type = "submit" >Download Trained Model</button></span>
+                    </form>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
