@@ -213,3 +213,15 @@ def predict(model,X):
         return y_pred
     else:
         return y_pred.detach().numpy()[0]
+
+def predict_proba(model,X):
+    '''
+    Predicts the output given the correct input data
+    :param model(XBNET Classifier/Regressor): model to be trained
+    :param X: Feature for which prediction is required
+    :return:
+    predicted probabilties value(int)
+    '''
+    X = torch.from_numpy(X)
+    y_pred = model(X.float(), train=False)
+    return y_pred
