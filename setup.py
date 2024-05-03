@@ -34,7 +34,7 @@ setuptools.setup(
 		"matplotlib==3.4.3",
 		 "torch==1.9.0",
         "xgboost==1.4.2",
-		"tqdm==4.62.2"
+		"tqdm==4.66.3"
 
 	],
 
